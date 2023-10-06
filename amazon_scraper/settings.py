@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'basic_scrapy_spider'
+BOT_NAME = 'amazon_scraper'
 
-SPIDER_MODULES = ['basic_scrapy_spider.spiders']
-NEWSPIDER_MODULE = 'basic_scrapy_spider.spiders'
+SPIDER_MODULES = ['amazon_scraper.spiders']
+NEWSPIDER_MODULE = 'amazon_scraper.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -19,8 +19,20 @@ NEWSPIDER_MODULE = 'basic_scrapy_spider.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+SCRAPEOPS_API_KEY= "dd2a7a54-c204-4cf4-807c-cf79ea0c6b13"
+
+SCRAPEOPS_PROXY_ENABLED = True
+# SCRAPEOPS_PROXY_SETTINGS = {'country': 'us'}
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+    # 'amazon_scraper.middlewares.ScrapeOpsProxyMiddleware': 725,
+}
+# DOWNLOAD_DELAY = 2
+
+# USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
